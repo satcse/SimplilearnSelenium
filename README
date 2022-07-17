@@ -1,0 +1,20 @@
+1.) Create a Spring Boot Project with web dependency.
+2.) Do Maven Clean Install
+3.) Go to AWS -> Instances -> Create an instance and download the private key file. Create Putty Keygen private key.
+4.) Login to EC2 Instance and do below:
+--> Perform SSH Login from Putty
+--> sudo -i
+--> yum install java-1.8.0-openjdk
+--> java -version
+--> alternatives --config java
+5.) Go to AWS -> S3 -> Create a bucket with public access. Upload the JAR file
+6.) Go to Buckets -> Click on the JAR file -> Permissions -> Object Ownership Section(before ACL) -> Edit -> ACLs Enabled -> Save Changes.
+7.) Go to Buckets -> Select the JAR -> On top Select "Actions" -> Make Public Using ACL
+8.) Now, Buckets -> Select the JAR and above -> Click on Copy URL.
+9.) Go to Putty, exit from root user and be a ec2-user.
+10.)Run wget https://awsbucketsat2.s3.amazonaws.com/spring-boot-demo.jar
+11.)java -jar application.jar
+12.) Once the program starts, please go ahead and run
+http://ec2-18-234-194-241.compute-1.amazonaws.com:8080/welcome
+13.) If the above is not working, Go to EC2 Dashboard -> Security Groups on Left Menu Panel -> Select the Security Groups
+14.) Security Group -> Add Inbound Rules -> Add Custom TCP -> 8080 -> Anywhere -> Save Changes. Now, Try the above URL it should work.
